@@ -20,8 +20,10 @@ function jogoDeAdivinhacao() {
     }
     const novaPontuacao = 100 - (tentativas*10);
     atualizarPontuacao(novaPontuacao)
-    console.log (tentativas)
-
+    
+    const palpitesFalhos = pegarPalpitesFalhos(); 
+    const novosPalpitesFalhos = palpitesFalhos + "  " +  PalpiteDigitado; 
+    atualizarPalpitesFalhos(novosPalpitesFalhos)
 }
 
 function reiniciarJogo() {

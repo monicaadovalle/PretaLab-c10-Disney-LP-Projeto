@@ -16,11 +16,11 @@ function atualizarFeedback(msg) {
 }
 
 function pegarPalpitesFalhos() {
-  // to-do
+  return document.getElementById("palpitesFalhos").textContent
 }
-
 function atualizarPalpitesFalhos(novoValor) {
-  // to-do
+  const campo = document.getElementById("palpitesFalhos");
+  campo.textContent = novoValor;
 }
 
 function pegarPontuacao() {
