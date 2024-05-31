@@ -1,12 +1,21 @@
-let numeroAleatorio = 0;
+let numeroAleatorio = 50;
 let tentativas = 0;
 
 function jogoDeAdivinhacao() {
-   const PalpiteDigitado = pegarPalpiteDigitado(); void
-console.log (PalpiteDigitado);
-if (PalpiteDigitado){
-   alert("Digite um valor válido")} 
+    const PalpiteDigitado = pegarPalpiteDigitado();
 
+    if (!PalpiteDigitado) {
+        alert("Digite um valor válido")
+        return; 
+    }
+
+    if (PalpiteDigitado === numeroAleatorio) {
+        alert("Parabéns, você ganhou")
+    } else if (PalpiteDigitado > numeroAleatorio) {
+        atualizarFeedback("Esse número é muito maior, tente novamente")
+    } else {
+        atualizarFeedback("O número é muito baixo, tente de novo")
+    }
 }
 
 function reiniciarJogo() {
