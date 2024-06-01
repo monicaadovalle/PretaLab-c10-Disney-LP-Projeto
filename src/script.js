@@ -52,6 +52,7 @@ function reiniciarJogo( ) {
         atualizarPontuacao(100);
         atualizarFeedback(" ");
         limparPalpiteDigitado(" ");
+        window.location.reload(); 
     }
 
 }
