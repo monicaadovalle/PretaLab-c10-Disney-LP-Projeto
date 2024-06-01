@@ -2,16 +2,17 @@ let numeroAleatorio = Math.floor(Math.random()* 100) + 1;
 let tentativas = 0;
 let palpites = [];
 
+
 function jogoDeAdivinhacao() {
     const PalpiteDigitado = pegarPalpiteDigitado();
 
-    if (!PalpiteDigitado || isNaN(PalpiteDigitado)||PalpiteDigitado<1||PalpiteDigitado>100) {
+    if (!PalpiteDigitado || isNaN(PalpiteDigitado)||PalpiteDigitado < 1 ||PalpiteDigitado>100) {
         alert("Digite um valor válido entre 1 e 100")
         return;
     
     }
     if (palpites.includes(PalpiteDigitado)) {
-        alert("Você ja tentou este palpite. Tente novamente com um número diferente.")
+        alert("Esse número já foi. Tente novamente com um número diferente.")
         return;
     }
     palpites.push(PalpiteDigitado);
@@ -35,12 +36,14 @@ function jogoDeAdivinhacao() {
     atualizarPalpitesFalhos(novosPalpitesFalhos)
 
     const pontuacaoAtual = pegarPontuacao(); 
-    if (pontuacaoAtual === "Você tem 0 pontos")
-        alert ("Deu ruim! Você perdeu.")
-        reiniciarJogo(pontuacaoAtual = 0); // Para altera
+    if (novaPontuacao === 0 && pontuacaoAtual === "Você tem 0 pontos"){ 
+        // Estou tentando que só apareca a janela de reiniciar quando a pontuação for = 0
+        alert ("Deu ruim! Você perdeu.");
+        reiniciarJogo( );
+    }
 }
  
-function reiniciarJogo(pontuacaoAtual=0) {
+function reiniciarJogo( ) {
     const vaiReiniciar = confirm ("Deseja Reiniciar o jogo?");
     if (vaiReiniciar === true) {
         tentativas = 0;
