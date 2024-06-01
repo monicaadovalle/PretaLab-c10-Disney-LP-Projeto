@@ -1,13 +1,20 @@
-let numeroAleatorio = 10;
+let numeroAleatorio = Math.floor(Math.random()* 100) + 1;
 let tentativas = 0;
+let palpites = [];
 
 function jogoDeAdivinhacao() {
     const PalpiteDigitado = pegarPalpiteDigitado();
 
-    if (!PalpiteDigitado) {
-        alert("Digite um valor válido")
+    if (!PalpiteDigitado || isNaN(PalpiteDigitado)||PalpiteDigitado<1||PalpiteDigitado>100) {
+        alert("Digite um valor válido entre 1 e 100")
         return; 
     }
+    /*const erro 
+    erro.includes ("12")
+    true 
+    erro.includes ("15")
+    false
+    */ 
 
     if (PalpiteDigitado === numeroAleatorio) {
         alert("Parabéns, você ganhou")
@@ -26,8 +33,14 @@ function jogoDeAdivinhacao() {
     const palpitesFalhos = pegarPalpitesFalhos(); 
     const novosPalpitesFalhos = palpitesFalhos + "  " +  PalpiteDigitado; 
     atualizarPalpitesFalhos(novosPalpitesFalhos)
-}
 
+    const pontuacaoAtual = pegarPontuacao(); 
+    if (pontuacaoAtual === "Você tem 0 pontos")
+        alert ("Deu ruim! Você perdeu.")
+        reiniciarJogo();
+
+}
+ 
 function reiniciarJogo() {
     const vaiReiniciar = confirm ("Deseja Reiniciar o jogo?");
 
@@ -37,6 +50,7 @@ function reiniciarJogo() {
         atualizarPontuacao(100);
         atualizarFeedback(" ");
         limparPalpiteDigitado( );
+        
 
     }
 
