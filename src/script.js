@@ -7,14 +7,14 @@ function jogoDeAdivinhacao() {
 
     if (!PalpiteDigitado || isNaN(PalpiteDigitado)||PalpiteDigitado<1||PalpiteDigitado>100) {
         alert("Digite um valor válido entre 1 e 100")
-        return; 
+        return;
+    
     }
-    /*const erro 
-    erro.includes ("12")
-    true 
-    erro.includes ("15")
-    false
-    */ 
+    if (palpites.includes(PalpiteDigitado)) {
+        alert("Você ja tentou este palpite. Tente novamente com um número diferente.")
+        return;
+    }
+    palpites.push(PalpiteDigitado);
 
     if (PalpiteDigitado === numeroAleatorio) {
         alert("Parabéns, você ganhou")
@@ -25,7 +25,7 @@ function jogoDeAdivinhacao() {
         atualizarFeedback("Esse número é muito maior, tente novamente")
     } else {
         tentativas++;
-        atualizarFeedback("O número é muito baixo, tente de novo")
+        atualizarFeedback("O número é muito baixo, tente de novo amore")
     }
     const novaPontuacao = 100 - (tentativas*10);
     atualizarPontuacao(novaPontuacao)
@@ -37,21 +37,18 @@ function jogoDeAdivinhacao() {
     const pontuacaoAtual = pegarPontuacao(); 
     if (pontuacaoAtual === "Você tem 0 pontos")
         alert ("Deu ruim! Você perdeu.")
-        reiniciarJogo();
-
+        reiniciarJogo(pontuacaoAtual = 0); // Para altera
 }
  
-function reiniciarJogo() {
+function reiniciarJogo(pontuacaoAtual=0) {
     const vaiReiniciar = confirm ("Deseja Reiniciar o jogo?");
-
     if (vaiReiniciar === true) {
-        tentativas = 0; 
+        tentativas = 0;
+        palpites = [] 
         atualizarPalpitesFalhos(" ");
         atualizarPontuacao(100);
         atualizarFeedback(" ");
-        limparPalpiteDigitado( );
-        
-
+        limparPalpiteDigitado(" ");
     }
 
 }
